@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 
 var submissionSchema = new mongoose.Schema({
   user: String,
-  time: Date,
+  createdAt: Date,
+  submittedAt: Date,
   length: Number,
-  language: Number,
-  status: Number,
+  language: String,
+  status: Boolean,
   message: String,
   url: String
 });

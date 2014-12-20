@@ -8,16 +8,21 @@ block content
         th Name
         th Language
         th Length
-        th Time
+        th Creation
+        th Submission
         th Status
+        th Message
         th URL
     tbody
+      - Date.prototype.toDisplayString = function () { return this.getFullYear() + '/' + (this.getMonth() + 1) + '/' + this.getDate() + ' ' + this.getHours() + ':' + this.getMinutes() + ':' + this.getSeconds() }
       each submission in submissions
-        tr
-          td= submission.name
+        tr(class=submission.status ? 'success' : 'warning')
+          td= submission.username
           td= submission.language
           td= submission.length
-          td= submission.time.toLocaleString()
-          td= submission.status
+          td= submission.createdAt.toDisplayString()
+          td= submission.submittedAt.toDisplayString()
+          td= submission.status ? 'AC' : 'WA'
+          td= submission.message
           td
             a(href=submission.url, target='_blank')= submission.url

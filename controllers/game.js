@@ -6,6 +6,7 @@ var passport = require('passport');
 var User = require('../models/User');
 var Submission = require('../models/Submission');
 var secrets = require('../config/secrets');
+var ideone = require('./ideone');
 
 /**
  * GET /scoreboard
@@ -26,11 +27,22 @@ exports.getScoreboard = function(req, res) {
  * Get latest submissions.
  */
 
-exports.getSubmissions = function(req, res) {
-  Submission.find().sort('-time').limit(5).exec(function (err, submissions) {
-    res.render('submissions', {
-      submissions: submissions,
-      title: 'Submissions'
+exports.getSubmissions = function(req, res, next) {
+  Submission.find().sort('-submittedAt').limit(5).exec(function (err, submissions) {
+    async.map(submissions, function (submission, done) {
+      User.findById(submission.user, function (err, user) {
+        if (err) return done(err);
+
+        submission.username = user.profile.name;
+        done(null, submission);
+      });
+    }, function (err, submissions) {
+      if (err) return next(err);
+
+      res.render('submissions', {
+        submissions: submissions,
+        title: 'Submissions'
+      });
     });
   });
 };
@@ -52,27 +64,38 @@ exports.getSubmit = function(req, res) {
  */
 
 exports.postSubmit = function(req, res, next) {
-  req.assert('url', 'URL is not valid').matches(/^https?:\/\/ideone.com\/.{6}$/);
+  req.assert('url', 'URL is not valid').matches(/^https?:\/\/ideone.com\/.{6}\/?$/);
 
   var errors = req.validationErrors();
+  var now = new Date();
 
   if (errors) {
     req.flash('errors', errors);
     return res.redirect('/submit');
   }
 
-  var submission = new Submission({
-    user: req.user._id,
-    time: new Date(),
-    length: 334,
-    language: 0,
-    status: 0,
-    message: 'Subission Accepted.',
-    url: req.body.url
-  });
+  ideone.submission(req.body.url, function (err, metacode, status, message) {
+    if (err) {
+      if (err.name === 'ParseError') {
+        req.flash('errors', {msg: err.message});
+        return res.redirect('/submit');
+      } else return done(err);
+    }
 
-  submission.save(function (err) {
-    if (err) return next(err);
-    res.redirect('/submissions');
-  });
+    var submission = new Submission({
+      user: req.user.id,
+      createdAt: metacode.time,
+      submittedAt: now,
+      length: metacode.length,
+      language: metacode.language,
+      status: status,
+      message: message,
+      url: req.body.url
+    });
+
+    submission.save(function (err) {
+      if (err) return next(err);
+      res.redirect('/submissions');
+    });
+  })
 };

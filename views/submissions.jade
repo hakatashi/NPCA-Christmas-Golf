@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2 Scoreboard
+  h2 Submissions
   table.table
     thead
       tr
@@ -14,14 +14,13 @@ block content
         th Message
         th URL
     tbody
-      - Date.prototype.toDisplayString = function () { return this.getFullYear() + '/' + (this.getMonth() + 1) + '/' + this.getDate() + ' ' + this.getHours() + ':' + this.getMinutes() + ':' + this.getSeconds() }
       each submission in submissions
         tr(class=submission.status ? 'success' : 'warning')
           td= submission.username
           td= submission.language
-          td= submission.length
-          td= submission.createdAt.toDisplayString()
-          td= submission.submittedAt.toDisplayString()
+          td= submission.length + ' bytes'
+          td= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+          td= moment(submission.submittedAt).format('YYYY/MM/DD HH:mm:ss')
           td= submission.status ? 'AC' : 'WA'
           td= submission.message
           td

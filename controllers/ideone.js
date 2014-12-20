@@ -61,7 +61,7 @@ exports.fetch = fetch;
 // code validator for this golf
 
 function validate(metacode) {
-  if (language.languageIDs.indexOf(metacode.language) === -1) {
+  if (language.languagenames.indexOf(metacode.language) === -1) {
     return new ValidationError('Languege ' + metacode.language + ' is not supported');
   }
 

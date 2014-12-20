@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h2 Languages
+  table.table
+    thead
+      tr
+        th Language
+        th Point
+        th Record
+        th Record Holder
+    tbody
+      each language in languages
+        tr
+          td
+            a(href='./languages/' + language.id)= language.name
+          td= language.point + ' points'
+          td= (language.record || '--') + ' bytes'
+          td= language.recordholder || '--'

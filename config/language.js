@@ -1,16 +1,45 @@
 var languages = {
-	C: 'C',
-	'C++': 'C++ 4.8.1',
-	Python: 'Python',
-	Ruby: 'Ruby',
-	Java: 'Java',
-	PHP: 'PHP',
-	'Node.js': 'Node.js',
-	Brainfuck: 'Brainf**k',
-	Scheme: 'Scheme (guile)'
+	c: {
+		name: 'C',
+		point: 50
+	},
+	cpp: {
+		name: 'C++ 4.8.1',
+		point: 50
+	},
+	python: {
+		name: 'Python',
+		point: 30
+	},
+	ruby: {
+		name: 'Ruby',
+		point: 30
+	},
+	java: {
+		name: 'Java',
+		point: 50
+	},
+	php: {
+		name: 'PHP',
+		point: 30
+	},
+	node: {
+		name: 'Node.js',
+		point: 30
+	},
+	brainfuck: {
+		name: 'Brainf**k',
+		point: 50
+	},
+	scheme: {
+		name: 'Scheme (guile)',
+		point: 50
+	},
+	fortran: {
+		name: 'Fortran',
+		point: 50
+	}
 };
 
-exports.languageMap = languages;
-
-exports.languages = Object.keys(languages);
-exports.languageIDs = Object.keys(languages).map(function (language) { return languages[language] });
+exports.languages = languages;
+exports.languagenames = Object.keys(languages).map(function (key) { return languages[key].name });

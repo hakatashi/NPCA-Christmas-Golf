@@ -10,7 +10,7 @@ block content
             th Name
             th Score
         tbody
-          each user in users
+          each score in scoreboard
             tr
-              td= user.profile.name
-              td 0
+              td= score.user.profile.name
+              td= score.point + ' points'

@@ -54,10 +54,31 @@ function constructRanking(language, done) {
  */
 
 exports.getScoreboard = function(req, res) {
-  User.find(function (err, users) {
-    res.render('scoreboard', {
-      users: users,
-      title: 'Scoreboard'
+  async.map(languages.languagenames, constructRanking, function (err, rankings) {
+    var scores = {};
+    rankings.forEach(function (ranking) {
+      ranking.forEach(function (rank) {
+        scores[rank.submission.user] = scores[rank.submission.user] || 0;
+        scores[rank.submission.user] += rank.point;
+      });
+    });
+
+    var scoreboard = [];
+
+    User.find(function (err, users) {
+      users.forEach(function (user) {
+        scoreboard.push({
+          user: user,
+          point: scores[user._id] || 0
+        });
+      });
+      scoreboard.sort(function (a, b) {
+        return b.point - a.point;
+      });
+      res.render('scoreboard', {
+        scoreboard: scoreboard,
+        title: 'Scoreboard'
+      });
     });
   });
 };

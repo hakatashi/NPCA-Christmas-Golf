@@ -1,15 +1,19 @@
 extends layout
 
 block content
-  h1 Hackathon Starter
-  p.lead A boilerplate for Node.js web applications.
+  h1 NPCA Christmas Golf
+  p.lead お題「数字をソースコードに含まずに、2015と出力するプログラム」
   hr
   .row
     .col-sm-6
-      h2 Heading
-      p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#', role='button') View details »
+      h2 ルール
+      ul
+        li 出力は標準出力のみを認める。
+        li コンパイル時出力は認めない。
+        li 出力する文字列に2015が含まれていればよい。
+        li 言語ごとにポイントが設定されており、各言語ごとに最も短いコードを提出した者がポイントを獲得する。
+        li コードの長さは、UTF-8でエンコードした際のバイト長で計測する。
+        li いかなる外部変数によらず、実行すれば常に2015と出力するコードでなければいけない。（見つけたら手動でBANします。）
     .col-sm-6
       h2 Heading
       p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.

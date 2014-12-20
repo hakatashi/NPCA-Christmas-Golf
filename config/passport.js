@@ -194,6 +194,7 @@ passport.use(new GitHubStrategy(secrets.github, function(req, accessToken, refre
 
 passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tokenSecret, profile, done) {
   if (req.user) {
+    console.log(profile);
     User.findOne({ twitter: profile.id }, function(err, existingUser) {
       if (existingUser) {
         req.flash('errors', { msg: 'There is already a Twitter account that belongs to you. Sign in with that account or delete it, then link it with your current account.' });
@@ -202,7 +203,7 @@ passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tok
         User.findById(req.user.id, function(err, user) {
           user.twitter = profile.id;
           user.tokens.push({ kind: 'twitter', accessToken: accessToken, tokenSecret: tokenSecret });
-          user.profile.name = user.profile.name || profile.displayName;
+          user.profile.name = user.profile.name || profile.username;
           user.profile.location = user.profile.location || profile._json.location;
           user.profile.picture = user.profile.picture || profile._json.profile_image_url_https;
           user.save(function(err) {
@@ -223,7 +224,7 @@ passport.use(new TwitterStrategy(secrets.twitter, function(req, accessToken, tok
       user.email = profile.username + "@twitter.com";
       user.twitter = profile.id;
       user.tokens.push({ kind: 'twitter', accessToken: accessToken, tokenSecret: tokenSecret });
-      user.profile.name = profile.displayName;
+      user.profile.name = profile.username;
       user.profile.location = profile._json.location;
       user.profile.picture = profile._json.profile_image_url_https;
       user.save(function(err) {

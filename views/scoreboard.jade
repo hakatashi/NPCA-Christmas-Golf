@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .row
+    .col-sm-6
+      h2 Scoreboard
+      table.table
+        thead
+          tr
+            th Name
+            th Score
+        tbody
+          each user in users
+            td= user.profile.name
+            td 0

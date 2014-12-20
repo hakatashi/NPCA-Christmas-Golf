@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h2 Submissions
+  h2 Recent Submissions
   table.table
     thead
       tr
@@ -19,8 +19,8 @@ block content
           td= submission.username
           td= submission.language
           td= submission.length + ' bytes'
-          td= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
-          td= moment(submission.submittedAt).format('YYYY/MM/DD HH:mm:ss')
+          td= moment(submission.createdAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
+          td= moment(submission.submittedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
           td= submission.status ? 'AC' : 'WA'
           td= submission.message
           td

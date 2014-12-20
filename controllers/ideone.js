@@ -65,16 +65,16 @@ function validate(metacode) {
     return new ValidationError('Languege ' + metacode.language + ' is not supported');
   }
 
-  if (metacode.stdin.length !== 0) {
-    return new ValidationError('stdin must be empty');
+  if (metacode.stdout.search('2015') === -1) {
+    return new ValidationError('Output doesn\'t contain 2015');
   }
 
   if (metacode.source.search(/\d/) !== -1) {
-    return new ValidationError('Source code includes digit');
+    return new ValidationError('Source code contains digit');
   }
 
-  if (metacode.stdout.search('2015') === -1) {
-    return new ValidationError('stdout doesn\'t includes 2015');
+  if (metacode.stdin.length !== 0) {
+    return new ValidationError('Input must be empty');
   }
 
   return null;

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h2= language
+  table.table
+    thead
+      tr
+        th Name
+        th Length
+        th Point
+        th Creation
+        th Submission
+        th URL
+    tbody
+      - var i = 0;
+      each rank in ranking
+        tr
+          td= rank.submission.username
+          td= rank.submission.length + ' bytes'
+          if i === 0
+            td
+              = rank.point - 20 + ' + '
+              strong(style='color: red;') 20
+              |  points
+          else
+            td= rank.point + ' points'
+          td= moment(rank.submission.createdAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
+          td= moment(rank.submission.submittedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
+          td
+            a(href=rank.submission.url, target='_blank')= rank.submission.url
+        - i++;

@@ -124,6 +124,7 @@ app.get('/submit', passportConf.isAuthenticated, gameController.getSubmit);
 app.post('/submit', passportConf.isAuthenticated, gameController.postSubmit);
 app.get('/submissions', gameController.getSubmissions);
 app.get('/languages', gameController.getLanguages);
+app.get('/languages/:language', gameController.getLanguage);
 app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);

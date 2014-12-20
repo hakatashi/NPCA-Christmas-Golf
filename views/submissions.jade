@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h2 Scoreboard
+  table.table
+    thead
+      tr
+        th Name
+        th Language
+        th Length
+        th Time
+        th Status
+        th URL
+    tbody
+      each submission in submissions
+        tr
+          td= submission.name
+          td= submission.language
+          td= submission.length
+          td= submission.time.toLocaleString()
+          td= submission.status
+          td
+            a(href=submission.url, target='_blank')= submission.url

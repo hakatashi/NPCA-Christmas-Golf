@@ -13,10 +13,12 @@
       ul.nav.navbar-nav
         li(class=title=='Home'?'active':undefined)
           a(href='/') Home
-        li(class=title=='Contact'?'active':undefined)
-          a(href='/contact') Contact
         li(class=title=='Scoreboard'?'active':undefined)
           a(href='/scoreboard') Scoreboard
+        li(class=title=='Submit'?'active':undefined)
+          a(href='/submit') Submit
+        li(class=title=='Submissions'?'active':undefined)
+          a(href='/submissions') Submissions
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=title=='Login'?'active':undefined)

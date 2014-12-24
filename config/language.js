@@ -38,6 +38,26 @@ var languages = {
 	fortran: {
 		name: 'Fortran',
 		point: 50
+	},
+	perl: {
+		name: 'Perl',
+		point: 30
+	},
+	haskell: {
+		name: 'Haskell',
+		point: 30
+	},
+	go: {
+		name: 'Go',
+		point: 30
+	},
+	lua: {
+		name: 'Lua',
+		point: 50
+	},
+	ocaml: {
+		name: 'OCaml',
+		point: 50
 	}
 };
 

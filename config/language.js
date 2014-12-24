@@ -56,7 +56,7 @@ var languages = {
 		point: 50
 	},
 	ocaml: {
-		name: 'OCaml',
+		name: 'Ocaml',
 		point: 50
 	}
 };

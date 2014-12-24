@@ -24,7 +24,7 @@ block content
           td= submission.status ? 'AC' : 'WA'
           td= submission.message
           td
-            if process.env.DEBUG === 'true' || (user && submission.user === user.id)
+            if true || (user && submission.user === user.id)
               a(href=submission.url, target='_blank')= submission.url
             else
               | ---

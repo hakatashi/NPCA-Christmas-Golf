@@ -27,7 +27,7 @@ block content
           td= moment(rank.submission.createdAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
           td= moment(rank.submission.submittedAt).tz('Asia/Tokyo').format('YYYY/MM/DD HH:mm:ss')
           td
-            if process.env.DEBUG === 'true' || (user && rank.submission.user === user.id)
+            if true || (user && rank.submission.user === user.id)
               a(href=rank.submission.url, target='_blank')= rank.submission.url
             else
               | ---

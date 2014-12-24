@@ -103,6 +103,7 @@ exports.getSubmissions = function(req, res, next) {
       res.render('submissions', {
         submissions: submissions,
         moment: moment,
+        user: req.user,
         title: 'Submissions'
       });
     });
@@ -128,6 +129,7 @@ exports.getLanguages = function(req, res, next) {
             id: key,
             name: lang.name,
             point: lang.point,
+            user: req.user,
             record: record[0].length,
             recordholder: user.profile.name
           });
@@ -137,6 +139,7 @@ exports.getLanguages = function(req, res, next) {
           id: key,
           name: lang.name,
           point: lang.point,
+          user: req.user,
           record: null,
           recordholder: null
         });

@@ -213,6 +213,9 @@ exports.postSubmit = function(req, res, next) {
     return res.redirect('/submit');
   }
 
+  req.flash('errors', {msg: 'Submission has been desabled'});
+  return res.redirect('/submit');
+
   Submission.findOne({url: req.body.url}, function (err, existing) {
     if (existing && existing.user !== req.user.id) {
       req.flash('errors', {msg: 'URL ' + req.body.url + ' is already submitted by other'});

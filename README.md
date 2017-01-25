@@ -2,6 +2,8 @@
 Hackathon Starter [![Dependency Status](https://david-dm.org/sahat/hackathon-starter/status.svg?style=flat)](https://david-dm.org/sahat/hackathon-starter) [![Build Status](http://img.shields.io/travis/sahat/hackathon-starter.svg?style=flat)](https://travis-ci.org/sahat/hackathon-starter) [![Analytics](https://ga-beacon.appspot.com/UA-47447818-2/hackathon-starter?pixel)](https://github.com/igrigorik/ga-beacon)
 =======================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/NPCA-Christmas-Golf.svg)](https://greenkeeper.io/)
+
 :octocat: &nbsp;**Live Demo**: http://hackathonstarter.herokuapp.com 
 
 Jump to [What's new in 2.4.0?](#changelog)
